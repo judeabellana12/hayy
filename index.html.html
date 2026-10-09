@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Papa's Pickleball Proposal 🏓</title>
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #071a16;
+    color: white;
+    overflow-x: hidden;
+}
+
+section {
+    min-height: 100vh;
+    padding: 100px 8%;
+    position: relative;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px;
+
+    background: rgba(4, 20, 17, 0.92);
+
+    backdrop-filter: blur(15px);
+
+    z-index: 1000;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+nav button {
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    color: #b7d7cd;
+
+    padding: 10px 17px;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+
+    transition: .3s;
+
+}
+
+nav button:hover,
+nav button.active {
+
+    background: #b9ff32;
+
+    color: #082018;
+
+    border-color: #b9ff32;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FLOATING PICKLEBALLS
+========================= */
+
+.ball {
+
+    position: fixed;
+
+    width: 35px;
+    height: 35px;
+
+    background: #c7ff38;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 20px rgba(199,255,56,.6);
+
+    z-index: -1;
+
+    opacity: .35;
+
+}
+
+.ball::before,
+.ball::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: #071a16;
+
+    border-radius: 50%;
+
+}
+
+.ball::before {
+    top: 7px;
+    left: 8px;
+}
+
+.ball::after {
+    bottom: 7px;
+    right: 8px;
+}
+
+.ball1 {
+
+    top: 20%;
+    left: 5%;
+
+    animation: float 6s infinite ease-in-out;
+
+}
+
+.ball2 {
+
+    top: 65%;
+    right: 5%;
+
+    animation: float 8s infinite ease-in-out reverse;
+
+}
+
+.ball3 {
+
+    top: 35%;
+    right: 15%;
+
+    width: 22px;
+    height: 22px;
+
+    animation: float 5s infinite ease-in-out;
+
+}
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-35px) rotate(180deg);
+    }
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+
+    linear-gradient(
+        rgba(7,26,22,.78),
+        rgba(7,26,22,.95)
+    ),
+
+    radial-gradient(
+        circle at center,
+        #155f47,
+        #071a16 65%
+    );
+
+}
+
+
+/* COURT LINES */
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 75%;
+    height: 75%;
+
+    border: 3px solid rgba(185,255,50,.12);
+
+    transform: perspective(500px) rotateX(55deg);
+
+}
+
+.hero-content {
+
+    max-width: 950px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+.badge {
+
+    display: inline-block;
+
+    padding: 8px 17px;
+
+    border-radius: 30px;
+
+    background: rgba(185,255,50,.1);
+
+    border: 1px solid #b9ff32;
+
+    color: #b9ff32;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+
+}
+
+.hero h1 {
+
+    font-size: clamp(48px, 9vw, 100px);
+
+    line-height: .95;
+
+    margin-bottom: 25px;
+
+}
+
+.hero h1 span {
+
+    color: #b9ff32;
+
+    text-shadow:
+        0 0 30px rgba(185,255,50,.35);
+
+}
+
+.hero p {
+
+    color: #b5cbc3;
+
+    font-size: 20px;
+
+    line-height: 1.7;
+
+    max-width: 720px;
+
+    margin: auto;
+
+}
+
+.hero-buttons {
+
+    margin-top: 35px;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+
+    display: inline-block;
+
+    padding: 15px 27px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    border: none;
+
+    transition: .3s;
+
+}
+
+.primary {
+
+    background: #b9ff32;
+
+    color: #082018;
+
+    box-shadow:
+        0 0 25px rgba(185,255,50,.25);
+
+}
+
+.primary:hover {
+
+    transform: translateY(-5px) scale(1.03);
+
+    box-shadow:
+        0 10px 35px rgba(185,255,50,.4);
+
+}
+
+.secondary {
+
+    border: 1px solid #49675d;
+
+    color: white;
+
+    margin-left: 10px;
+
+}
+
+.secondary:hover {
+
+    background: rgba(255,255,255,.08);
+
+}
+
+
+/* =========================
+   HEADINGS
+========================= */
+
+.container {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+}
+
+.section-label {
+
+    color: #b9ff32;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+
+}
+
+.section-title {
+
+    font-size: clamp(38px, 6vw, 65px);
+
+    margin-bottom: 15px;
+
+}
+
+.section-description {
+
+    color: #9eb7ae;
+
+    font-size: 18px;
+
+    max-width: 700px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================
+   HEALTH SECTION
+========================= */
+
+.health {
+
+    background: #f3f8f2;
+
+    color: #102d25;
+
+}
+
+.health .section-title {
+
+    color: #102d25;
+
+}
+
+.health .section-description {
+
+    color: #52655e;
+
+}
+
+.health-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-top: 45px;
+
+}
+
+.health-card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    border: 1px solid #dce9df;
+
+    transition: .3s;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.health-card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 20px 40px rgba(26,70,50,.12);
+
+}
+
+.health-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 18px;
+
+}
+
+.health-card h3 {
+
+    margin-bottom: 10px;
+
+    font-size: 22px;
+
+}
+
+.health-card p {
+
+    color: #61716b;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================
+   PERFORMANCE
+========================= */
+
+.performance {
+
+    background:
+
+    radial-gradient(
+        circle at 80% 30%,
+        #164d3b,
+        #071a16 55%
+    );
+
+}
+
+.paddle-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 50px;
+
+    align-items: center;
+
+    margin-top: 50px;
+
+}
+
+
+/* PADDLE */
+
+.paddle {
+
+    width: 220px;
+
+    height: 370px;
+
+    margin: auto;
+
+    position: relative;
+
+    transform: rotate(15deg);
+
+    filter:
+        drop-shadow(0 20px 25px rgba(0,0,0,.5));
+
+}
+
+.paddle-face {
+
+    width: 210px;
+
+    height: 260px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d5ff4b,
+            #70a91b
+        );
+
+    border-radius:
+        45% 45% 35% 35%;
+
+    border: 5px solid #dfff75;
+
+    position: absolute;
+
+    top: 0;
+
+    left: 5px;
+
+}
+
+.paddle-face::after {
+
+    content: "🏓";
+
+    position: absolute;
+
+    font-size: 90px;
+
+    top: 75px;
+
+    left: 58px;
+
+    filter: grayscale(1);
+
+}
+
+.paddle-handle {
+
+    width: 65px;
+
+    height: 130px;
+
+    background: #39271e;
+
+    position: absolute;
+
+    left: 78px;
+
+    top: 240px;
+
+    border-radius: 15px;
+
+}
+
+
+/* FEATURES */
+
+.feature-list {
+
+    margin-top: 30px;
+
+}
+
+.feature {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.07);
+
+}
+
+.feature-icon {
+
+    font-size: 25px;
+
+}
+
+.feature h3 {
+
+    margin-bottom: 4px;
+
+}
+
+.feature p {
+
+    color: #91aaa1;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================
+   VALUE SECTION
+========================= */
+
+.value {
+
+    background: #0c2821;
+
+}
+
+.value-box {
+
+    margin-top: 45px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 20px;
+
+}
+
+.value-card {
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #133d31,
+            #0b2921
+        );
+
+    border: 1px solid #245344;
+
+}
+
+.value-number {
+
+    font-size: 45px;
+
+    font-weight: bold;
+
+    color: #b9ff32;
+
+}
+
+.value-card h3 {
+
+    margin: 10px 0;
+
+}
+
+.value-card p {
+
+    color: #91aaa1;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================
+   FINAL QUESTION
+========================= */
+
+.final {
+
+    min-height: 100vh;
+
+    text-align: center;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+
+    radial-gradient(
+        circle at center,
+        #164c3a,
+        #071a16 65%
+    );
+
+}
+
+.final-ball {
+
+    font-size: 80px;
+
+    animation:
+        bounce 2s infinite;
+
+}
+
+@keyframes bounce {
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+}
+
+.final h2 {
+
+    font-size:
+        clamp(45px,7vw,80px);
+
+    margin: 20px 0;
+
+}
+
+.final h2 span {
+
+    color: #b9ff32;
+
+}
+
+.final p {
+
+    color: #a5bbb4;
+
+    font-size: 20px;
+
+    max-width: 650px;
+
+    margin: auto;
+
+    line-height: 1.7;
+
+}
+
+
+/* CHOICES */
+
+.choice-box {
+
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    max-width: 700px;
+
+    margin: 40px auto;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+}
+
+.choices {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    margin-top: 25px;
+
+}
+
+.yes-btn,
+.no-btn {
+
+    padding: 17px 35px;
+
+    border-radius: 13px;
+
+    border: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition: .3s;
+
+}
+
+.yes-btn {
+
+    background: #b9ff32;
+
+    color: #082018;
+
+}
+
+.yes-btn:hover {
+
+    transform: scale(1.1);
+
+}
+
+.no-btn {
+
+    background: #263a34;
+
+    color: #b9cbc5;
+
+}
+
+.no-btn:hover {
+
+    transform: translateX(12px);
+
+}
+
+#answer {
+
+    min-height: 90px;
+
+    margin-top: 25px;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    color: #b9ff32;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    background: #04110e;
+
+    color: #668078;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px) {
+
+    nav button {
+
+        font-size: 11px;
+
+        padding: 8px 10px;
+
+    }
+
+    section {
+
+        padding-left: 5%;
+
+        padding-right: 5%;
+
+    }
+
+    .health-grid,
+    .value-box,
+    .paddle-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .paddle {
+
+        transform:
+            scale(.8)
+            rotate(10deg);
+
+    }
+
+    .choices {
+
+        flex-direction: column;
+
+    }
+
+    .secondary {
+
+        margin-left: 0;
+
+        margin-top: 10px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- FLOATING BALLS -->
+
+<div class="ball ball1"></div>
+
+<div class="ball ball2"></div>
+
+<div class="ball ball3"></div>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<button onclick="scrollToSection('home')" class="active">
+🏓 HOME
+</button>
+
+<button onclick="scrollToSection('health')">
+💚 HEALTH
+</button>
+
+<button onclick="scrollToSection('performance')">
+🏆 PERFORMANCE
+</button>
+
+<button onclick="scrollToSection('value')">
+💰 VALUE
+</button>
+
+<button onclick="scrollToSection('final')">
+❤️ PAPA
+</button>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="badge">
+🏓 OFFICIAL PROPOSAL TO PAPA
+</div>
+
+<h1>
+
+PAPA, I HAVE A
+<br>
+
+<span>SMASHING</span>
+<br>
+
+PROPOSAL.
+
+</h1>
+
+<p>
+
+I want a pickleball paddle —
+not just because I want another sports accessory,
+but because pickleball helps me stay active,
+happy, disciplined, and competitive.
+
+</p>
+
+
+<div class="hero-buttons">
+
+<a
+href="#health"
+class="btn primary"
+>
+WHY PICKLEBALL? →
+</a>
+
+<a
+href="#final"
+class="btn secondary"
+>
+Skip to Papa's Decision 👀
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     HEALTH
+========================= -->
+
+<section class="health" id="health">
+
+<div class="container">
+
+<div class="section-label">
+01 — HEALTH & HAPPINESS
+</div>
+
+<h2 class="section-title">
+Pickleball Makes Me a Better Student.
+</h2>
+
+<p class="section-description">
+
+Between school, assignments, and studying,
+having a sport I genuinely enjoy gives me
+a healthy way to stay active and recharge.
+
+</p>
+
+
+<div class="health-grid">
+
+
+<div class="health-card">
+
+<div class="health-icon">
+🏃
+</div>
+
+<h3>
+Stay Active
+</h3>
+
+<p>
+
+Pickleball keeps me moving and gives me
+a fun reason to stay physically active.
+
+</p>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+🧠
+</div>
+
+<h3>
+Quick Thinking
+</h3>
+
+<p>
+
+The game requires reaction time,
+focus, coordination, strategy,
+and decision-making.
+
+</p>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+😊
+</div>
+
+<h3>
+Makes Me Happy
+</h3>
+
+<p>
+
+Playing a sport I genuinely enjoy
+helps me relax and gives me something
+positive to look forward to.
+
+</p>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+🎯
+</div>
+
+<h3>
+Discipline
+</h3>
+
+<p>
+
+Training teaches consistency,
+patience, practice, and commitment.
+
+</p>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+🤝
+</div>
+
+<h3>
+Social Connection
+</h3>
+
+<p>
+
+Pickleball lets me meet people,
+play with others, communicate,
+and build friendships.
+
+</p>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+📚
+</div>
+
+<h3>
+Better Balance
+</h3>
+
+<p>
+
+Having a sport gives me a healthy
+break from school and screen time.
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     PERFORMANCE
+========================= -->
+
+<section class="performance" id="performance">
+
+<div class="container">
+
+<div class="section-label">
+02 — COMPETITIVE PERFORMANCE
+</div>
+
+<h2 class="section-title">
+I Don't Just Play.
+<br>
+I Compete. 🏆
+</h2>
+
+<p class="section-description">
+
+Since I'm becoming a competitive player,
+I want equipment that can keep up with
+my development and playing style.
+
+</p>
+
+
+<div class="paddle-layout">
+
+
+<!-- PADDLE -->
+
+<div>
+
+<div class="paddle">
+
+<div class="paddle-face"></div>
+
+<div class="paddle-handle"></div>
+
+</div>
+
+</div>
+
+
+<!-- FEATURES -->
+
+<div class="feature-list">
+
+
+<div class="feature">
+
+<div class="feature-icon">
+🎯
+</div>
+
+<div>
+
+<h3>
+Control
+</h3>
+
+<p>
+A paddle that suits my style can help
+me make more consistent shots.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+⚡
+</div>
+
+<div>
+
+<h3>
+Performance
+</h3>
+
+<p>
+Good equipment can help me perform
+with more confidence during games.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+💪
+</div>
+
+<div>
+
+<h3>
+Confidence
+</h3>
+
+<p>
+Knowing I have reliable equipment
+lets me focus more on my game.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+🏆
+</div>
+
+<div>
+
+<h3>
+Competitive Play
+</h3>
+
+<p>
+The right paddle can support me
+as I continue improving my skills.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     VALUE
+========================= -->
+
+<section class="value" id="value">
+
+<div class="container">
+
+<div class="section-label">
+03 — SMART PURCHASE
+</div>
+
+<h2 class="section-title">
+I'm Asking for <span style="color:#b9ff32;">
+VALUE
+</span>,
+Not Luxury.
+</h2>
+
+<p class="section-description">
+
+I don't need the most expensive paddle.
+I want a paddle that gives me the best
+balance between quality, performance,
+and price.
+
+</p>
+
+
+<div class="value-box">
+
+
+<div class="value-card">
+
+<div class="value-number">
+01
+</div>
+
+<h3>
+Quality
+</h3>
+
+<p>
+
+A good paddle should be comfortable,
+durable, and appropriate for my level
+of play.
+
+</p>
+
+</div>
+
+
+<div class="value-card">
+
+<div class="value-number">
+02
+</div>
+
+<h3>
+Performance
+</h3>
+
+<p>
+
+The right equipment can help me
+develop my control, consistency,
+and confidence.
+
+</p>
+
+</div>
+
+
+<div class="value-card">
+
+<div class="value-number">
+03
+</div>
+
+<h3>
+Long-Term Value
+</h3>
+
+<p>
+
+Instead of repeatedly replacing cheap
+equipment, I'd rather choose something
+that I can use as I improve.
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section class="final" id="final">
+
+<div class="container">
+
+<div class="final-ball">
+🏓
+</div>
+
+<div class="section-label">
+FINAL ROUND
+</div>
+
+<h2>
+
+So, Papa...
+
+<br>
+
+<span>Will You Support My Game?</span>
+
+</h2>
+
+<p>
+
+A paddle isn't just a purchase for me.
+It's something I'll use to stay active,
+have fun, improve my skills,
+and continue competing.
+
+</p>
+
+
+<div class="choice-box">
+
+<h3>
+🏓 Papa's Official Decision
+</h3>
+
+<p>
+Choose carefully... 😭
+</p>
+
+
+<div class="choices">
+
+<button
+class="yes-btn"
+onclick="yesAnswer()"
+>
+YES 🥹❤️
+</button>
+
+
+<button
+class="no-btn"
+id="noButton"
+onclick="noAnswer()"
+>
+NO 😭
+</button>
+
+</div>
+
+
+<div id="answer">
+
+Waiting for Papa's decision... 👀
+
+</div>
+
+</div>
+
+
+<p style="font-size:15px;">
+
+I promise I'll take care of the paddle
+and make the most of it. ❤️
+
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+🏓 Made with love, determination, and a little Papa persuasion. ❤️
+
+</footer>
+
+
+
+<script>
+
+
+/* NAVIGATION */
+
+function scrollToSection(id) {
+
+document.getElementById(id)
+.scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+
+/* YES */
+
+function yesAnswer() {
+
+document.getElementById("answer").innerHTML =
+
+"🎉 THANK YOU PAPA!! 🥹❤️🏓" +
+
+"<br>" +
+
+"<span style='font-size:16px;color:#9eb7ae'>" +
+
+"I PROMISE I'LL MAKE THE MOST OF IT! 🏆" +
+
+"</span>";
+
+}
+
+
+/* NO */
+
+let noClicks = 0;
+
+function noAnswer() {
+
+noClicks++;
+
+const messages = [
+
+"Papa please... 🥹",
+
+"But Papa, pickleball makes me happy! 😭🏓",
+
+"I promise I'll take really good care of it! 🥺",
+
+"Papa, this paddle could help me become even better! 🏆😭",
+
+"PLEASE PAPA 😭❤️",
+
+"Okay Papa... what if we reconsider that NO? 🥹🏓"
+
+];
+
+document.getElementById("answer")
+.innerHTML =
+messages[Math.min(noClicks - 1, messages.length - 1)];
+
+
+/* CHANGE NO BUTTON */
+
+if(noClicks >= 5) {
+
+document.getElementById("noButton")
+.innerHTML =
+"YES? 🥹";
+
+document.getElementById("noButton")
+.onclick =
+yesAnswer;
+
+}
+
+}
+
+
+/* ACTIVE NAV */
+
+const sections = [
+"home",
+"health",
+"performance",
+"value",
+"final"
+];
+
+const navButtons =
+document.querySelectorAll("nav button");
+
+
+window.addEventListener("scroll", function() {
+
+let current = "home";
+
+sections.forEach(function(id) {
+
+const section =
+document.getElementById(id);
+
+if(window.scrollY >= section.offsetTop - 200) {
+
+current = id;
+
+}
+
+});
+
+
+navButtons.forEach(function(button,index) {
+
+button.classList.toggle(
+"active",
+sections[index] === current
+);
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
